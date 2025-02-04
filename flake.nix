@@ -13,6 +13,7 @@
 		nixosModules = {
 			nix-config = import ./nix-config.nix;
 			authorized-keys = import ./authorized-keys.nix self;
+			system = import ./system/default.nix self;
 
 			default =
 			{ ... }:
