@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
 	nixpkgs.overlays = [
 		(final: prev: {
@@ -14,9 +14,13 @@
 					final.makeWrapper
 				];
 
+				unpackPhase = "true";
+
 				installPhase = ''
 					mkdir -p $out/bin
-					echo ${prev.ranger}/bin/ranger >> $out/bin/ranger
+					echo "#!/bin/sh
+					${prev.ranger}/bin/ranger" >> $out/bin/ranger
+					chmod +x $out/bin/ranger
 					wrapProgram $out/bin/ranger --prefix PATH : ${final.lib.makeBinPath (with final; [
 						#file
 

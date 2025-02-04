@@ -1,6 +1,6 @@
-{ pkgs }:
+{ pkgs, ... }:
 {
-	envionment.systemPackages = with pkgs; [
+	environment.systemPackages = with pkgs; [
 		wget
 		cifs-utils
 		git
@@ -13,6 +13,5 @@
 		unzip
 		rar
 		unrar
-		7zip
 	];
 }
