@@ -1,7 +1,7 @@
 {
 	imports = [
-		./simple_list.nix
-		./ranger_overlay.nix
+		./simpleList.nix
+		./rangerOverlay.nix
 		./openssh.nix
 		./neovim/default.nix
 	];

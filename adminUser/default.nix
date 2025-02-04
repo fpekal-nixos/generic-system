@@ -1,7 +1,7 @@
 {
 	imports = [
 		./user.nix
-		./authorized_keys.nix
+		./authorizedKeys.nix
 		./packages.nix
 	];
 }
