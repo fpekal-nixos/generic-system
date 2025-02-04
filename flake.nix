@@ -5,10 +5,14 @@
 			url = "github:nix-community/home-manager/release-24.11";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		sops-nix = {
+			url = "github:Mic92/sops-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs =
-	{ nixpkgs, home-manager, self }:
+	{ nixpkgs, home-manager, sops-nix, self }:
 	{
 		lib = {
 			createSystem =
@@ -23,6 +27,7 @@
 						_module.args.machineSpecific = machineSpecific;
 					}
 					home-manager.nixosModules.home-manager
+					sops-nix.nixosModules.sops
 				] ++ (machineSpecific.modules);
 			};
 		};

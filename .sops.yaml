@@ -1,0 +1,7 @@
+keys:
+  - &everest age108hrd2jmtasgr3l5t3r90hs9uwnafp95l3xpsz7hdmtsj2x4535swwfy8u
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *everest

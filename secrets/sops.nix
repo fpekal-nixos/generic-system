@@ -1,0 +1,18 @@
+{ machineSpecific, config, ... }:
+{
+	sops = {
+		defaultSopsFile = ./secrets/secrets.yaml;
+		defaultSopsFormat = "yaml";
+
+		age.keyFile = "/home/${machineSpecific.adminUser}/.config/sops/age/keys.txt";
+
+		validateSopsFiles = true;
+		secrets = {
+			"vpn/pwr/username" = {};
+			"vpn/pwr/password" = {};
+			"vpn/tailscale/key" = {};
+		};
+	};
+
+	environment.etc."test.txt".text = config.sops.secrets."vpn/pwr/username".path;
+}
