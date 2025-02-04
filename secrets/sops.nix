@@ -10,7 +10,8 @@
 		secrets = {
 			"vpn/pwr/username" = {};
 			"vpn/pwr/password" = {};
-			"vpn/tailscale/key" = {};
+			"vpn/tailscale/everest-key" = {};
+			"vpn/tailscale/table-key" = {};
 		};
 	};
 
