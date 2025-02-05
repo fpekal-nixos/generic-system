@@ -1,7 +1,7 @@
 { machineSpecific, config, ... }:
 {
 	sops = {
-		defaultSopsFile = ./secrets/secrets.yaml;
+		defaultSopsFile = ./secrets.yaml;
 		defaultSopsFormat = "yaml";
 
 		age.keyFile = "/home/${machineSpecific.adminUser}/.config/sops/age/keys.txt";
