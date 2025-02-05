@@ -35,7 +35,7 @@
 		nixosConfigurations = {
 			example = self.lib.createSystem {
 				system = "x86_64-linux";
-				stateVersion = "21.11";
+				stateVersion = "24.11";
 				adminUser = "filip";
 				adminInitialPass = "genowefa";
 				modules = [];
