@@ -11,6 +11,7 @@
 			"vpn/pwr/password" = {};
 			"vpn/tailscale/everest-key" = {};
 			"vpn/tailscale/table-key" = {};
+			"vpn/tailscale/tmp-key" = {};
 		};
 	};
 
