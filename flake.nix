@@ -9,10 +9,14 @@
 			url = "github:Mic92/sops-nix";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		moje = {
+			url = "github:fpekal-nixos/all";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs =
-	{ nixpkgs, home-manager, sops-nix, self }:
+	{ nixpkgs, home-manager, sops-nix, moje, self }:
 	{
 		lib = {
 			createSystem =
@@ -25,9 +29,14 @@
 					{
 						system.stateVersion = machineSpecific.stateVersion;
 						_module.args.machineSpecific = machineSpecific;
+
+						nixpkgs.overlays = [
+							moje.overlays.default
+						];
 					}
 					home-manager.nixosModules.home-manager
 					sops-nix.nixosModules.sops
+					moje.nixosModules.default
 				] ++ (machineSpecific.modules);
 			};
 		};
