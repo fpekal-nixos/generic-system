@@ -6,7 +6,6 @@
 
 		age.keyFile = "/home/${machineSpecific.adminUser}/.config/sops/age/keys.txt";
 
-		validateSopsFiles = true;
 		secrets = {
 			"vpn/pwr/username" = {};
 			"vpn/pwr/password" = {};
