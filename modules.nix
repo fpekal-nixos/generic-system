@@ -4,5 +4,6 @@
 		./system/default.nix
 		./nixSettings.nix
 		./secrets/sops.nix
+		./nix-ld.nix
 	];
 }
