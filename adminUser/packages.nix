@@ -6,5 +6,6 @@
 		htop
 		zip
 		unzip
+		zen-browser
 	];
 }

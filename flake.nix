@@ -13,10 +13,14 @@
 			url = "github:fpekal-nixos/all";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		zen-browser = {
+			url = "github:youwen5/zen-browser-flake";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
 	};
 
 	outputs =
-	{ nixpkgs, home-manager, sops-nix, moje, self }:
+	{ nixpkgs, home-manager, sops-nix, moje, self, zen-browser }:
 	{
 		lib = {
 			createSystem =
@@ -32,6 +36,9 @@
 
 						nixpkgs.overlays = [
 							moje.overlays.default
+							(final: prev: {
+								zen-browser = zen-browser.packages.x86_64-linux.zen-browser;
+							})
 						];
 					}
 					home-manager.nixosModules.home-manager
