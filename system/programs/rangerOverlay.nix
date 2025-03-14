@@ -35,7 +35,6 @@
 						#poppler_utils
 						djvulibre
 						#calibre
-						transmission
 						mediainfo
 						odt2txt
 						#python3
