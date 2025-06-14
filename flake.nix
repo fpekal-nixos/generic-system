@@ -4,14 +4,59 @@
 
 		nixosBlankSystem.url = "github:fpekal-nixos/nixos-template";
 		nixosBlankSystem.inputs.nixpkgs.follows = "nixpkgs";
+
+		home-manager = {
+			url = "github:nix-community/home-manager/release-25.05";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		sops-nix = {
+			url = "github:Mic92/sops-nix";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		zen-browser = {
+			url = "github:youwen5/zen-browser-flake";
+			inputs.nixpkgs.follows = "nixpkgs";
+		};
+		impurity.url = "github:outfoxxed/impurity.nix";
 	};
 
 	outputs =
-		{ self, nixosBlankSystem, ... }:
+		{ self, nixosBlankSystem, home-manager, sops-nix, impurity, ... }@inputs:
 		{
-			systems.generic = nixosBlankSystem.systems.minimal.extend { modules = [ ./modules ./overlays ./packages ./users ./hosts ./shells ./options ]; };
+			systems.generic = nixosBlankSystem.systems.minimal.extend {
+				modules = [
+					./modules ./overlays ./packages ./users ./hosts ./shells ./options
+					home-manager.nixosModules.home-manager
+					sops-nix.nixosModules.sops
 
-			nixosConfigurations.example = self.systems.generic.mksystem { system = "x86_64-linux"; specialArgs = { host = "nixos"; users = [ ]; }; };
+					{
+						imports = [ impurity.nixosModules.impurity ];
+						impurity.configRoot = self;
+					}
+				];
+
+				specialArgs = {
+					inherit inputs;
+				};
+			};
+
+			nixosConfigurations.example = self.systems.generic.mksystem {
+				system = "x86_64-linux";
+				specialArgs = { host = "nixos"; users = [ "filip" ]; };
+
+				modules = [
+					{
+						virtualisation.vmVariant.virtualisation = {
+							sharedDirectories = {
+								nixos-config = {
+									source = "/home/filip/dev/nix/generic-system";
+									target = "/home/filip/dev/nix/generic-system";
+								};
+							};
+						};
+					}
+				];
+			};
 		};
 }
 
