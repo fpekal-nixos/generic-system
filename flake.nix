@@ -31,7 +31,6 @@
 
 					{
 						imports = [ impurity.nixosModules.impurity ];
-						impurity.configRoot = self;
 					}
 				];
 
