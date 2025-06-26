@@ -1,7 +1,5 @@
 { config, impurity, ... }:
 {
-	impurity.enable = true;
-
 	home-manager.users.filip = {
 		home.file.nvim-config = {
 			source = impurity.link ./nvim-config;
